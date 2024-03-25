@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jokes</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+    
+        h1 {
+            font-size: 40px;
+            color: #ff00ff;
+            text-transform: uppercase;
+        }
+    
+        form {
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            background-color: #000;
+            max-width: 500px;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    
+        .checkbox-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        input[type="checkbox"] {
+            margin-right: 5px;
+            transform: scale(1.5);
+        }
+    
+        input[type="submit"] {
+            background-color: #00ff00;
+            border: none;
+            color: #000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #00cc00;
+        }
+    
+        p {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #00ff00;
+        }
+    
+        p.error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the funny section</h1>
+    <form action="/" method="post">
+        <div>
+            <p>category :</p>
+        <input type="checkbox" name="category" value="any" id="any"><label for="any">any</label><br>
+        <p>Custom :</p>
+        <label><input type="checkbox" id="custom">custom</label>
+        <input type="checkbox" name="category" class="age-checkbox" disabled value="programming" id="programming"><label for="programming">programming</label><br>
+        <input type="checkbox" name="category" class="age-checkbox" disabled value="misc" id="misc"><label for="misc">misc</label><br>
+        <input type="checkbox" name="category" class="age-checkbox" disabled value="dark" id="dark"><label for="dark">dark</label><br>
+        <input type="checkbox" name="category" class="age-checkbox" disabled value="pun" id="pun"><label for="pun">pun</label><br>
+        <input type="checkbox" name="category" class="age-checkbox" disabled value="spooky" id="spooky"><label for="spooky">spooky</label><br>
+        <input type="checkbox" name="category" class="age-checkbox" disabled value="christmas" id="christmas"><label for="christmas">christmas</label><br>
+</div>
+<div>
+    <p>select flags to blacklist :</p>
+    <input type="checkbox" name="blacklist" value="" id="h" checked><label for="none" >none</label><br>
+    <input type="checkbox" name="blacklist" value="nsfw" id="nsfw"><label for="nsfw">nsfw</label><br>
+    <input type="checkbox" name="blacklist" value="political" id="political"><label for="political">political</label><br>
+    <input type="checkbox" name="blacklist" value="religious" id="religious"><label for="religious">religious</label><br>
+    <input type="checkbox" name="blacklist" value="racist" id="racist"><label for="racist">racist</label><br>
+    <input type="checkbox" name="blacklist" value="sexist" id="sexist"><label for="sexist">sexist</label><br>
+    <input type="checkbox" name="blacklist" value="explicit" id="explicit"><label for="explicit">explicit</label><br>
+</div>
+<div>
+<input type="submit" value="go">
+    </div></form>
+    <p>
+        <% if (locals.joke) {%>
+                <%= joke %>
+        <% } %>
+        </p>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#any').on('change', function (){
+                    if ($(this).is(':checked')) {
+                        
+                        $('#custom').prop('checked', false);
+
+                    } else {
+                        $('.age-checkbox').prop('disabled', true).prop('checked', false);
+                         $('#custom').prop('disabled', true).prop('checked', false);
+                    }
+                });
+                $('#custom').on('change', function () {
+                    if ($(this).is(':checked')) {
+                        $('.age-checkbox').prop('disabled', false);
+                        $('#any').prop('checked', false);
+
+                    } else {
+                        $('.age-checkbox').prop('disabled', true).prop('checked', false);
+                    }
+                });
+            });
+        </script>
+</body>
+</html>
